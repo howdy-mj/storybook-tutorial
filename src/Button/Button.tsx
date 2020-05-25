@@ -15,6 +15,8 @@ export type ButtonProps = {
   disabled?: boolean;
   /** 버튼 너비 설정 */
   width?: string | number;
+  /** 버튼에서 아이콘만 보여줄 때 이 값을 'true'로 설정 */
+  iconOnly?: boolean;
 };
 
 /** `Button` 컴포넌트는 어떠한 작업을 트리거 할 때 사용합니다.  */
@@ -24,11 +26,18 @@ const Button = ({
   size,
   disabled,
   width,
+  iconOnly,
   onClick,
 }: ButtonProps) => {
   return (
     <button
-      css={[style, themes[theme], sizes[size], { width }]}
+      css={[
+        style,
+        themes[theme],
+        sizes[size],
+        { width },
+        iconOnly && [iconOnlyStyle, iconOnlySizes[size]],
+      ]}
       disabled={disabled}
       onClick={onClick}
     >
@@ -139,6 +148,26 @@ const sizes = {
     height: 3rem;
     font-size: 1.125rem;
     padding: 0 1.5rem;
+  `,
+};
+
+const iconOnlyStyle = css`
+  padding: 0;
+  border-radius: 50%;
+  svg {
+    margin: 0;
+  }
+`;
+
+const iconOnlySizes = {
+  small: css`
+    width: 1.75rem;
+  `,
+  medium: css`
+    width: 2.5rem;
+  `,
+  big: css`
+    width: 3rem;
   `,
 };
 
