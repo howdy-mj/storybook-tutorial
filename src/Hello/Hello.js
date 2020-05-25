@@ -1,6 +1,6 @@
 import React from "react";
 
-const Hello = ({ name, big}) => {
+const Hello = ({ name, big }) => {
     if (big) {
         return <h1>Hello, {name}!</h1>
     }
