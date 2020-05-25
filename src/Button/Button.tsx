@@ -13,13 +13,22 @@ export type ButtonProps = {
   size: "small" | "medium" | "big";
   /** 버튼 비활성화 */
   disabled?: boolean;
+  /** 버튼 너비 설정 */
+  width?: string | number;
 };
 
 /** `Button` 컴포넌트는 어떠한 작업을 트리거 할 때 사용합니다.  */
-const Button = ({ children, theme, size, disabled, onClick }: ButtonProps) => {
+const Button = ({
+  children,
+  theme,
+  size,
+  disabled,
+  width,
+  onClick,
+}: ButtonProps) => {
   return (
     <button
-      css={[style, themes[theme], sizes[size]]}
+      css={[style, themes[theme], sizes[size], { width }]}
       disabled={disabled}
       onClick={onClick}
     >
