@@ -1,17 +1,32 @@
 import React from "react";
 import Hello from "./Hello";
 import { withKnobs, text, boolean } from "@storybook/addon-knobs";
+import { action } from "@storybook/addon-actions";
+import mdx from "./Hello.mdx";
 
 export default {
     title: "components|basic/Hello",
     component: Hello,
-    decorators: [withKnobs]
+    decorators: [withKnobs],
+    parameters: {
+        componentSubtitle: "'Hello' 보여주는 컴포넌트",
+        docs: {
+            page: mdx
+        }
+    }
 }
 
 export const hello = () => {
+    // knobs 만들기
     const big = boolean('big', false);
     const name = text('name', 'Storybook');
-    return <Hello name={name} big={big} />;
+    return (
+        <Hello 
+            name={name} 
+            big={big} 
+            onHello={action('onHello')} 
+            onBye={action('onBye')} />
+    );
 }
 hello.story = {
     name: 'Default'
